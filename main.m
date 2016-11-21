@@ -1,5 +1,6 @@
 S = '/home/sameera/Documents/Mphil/Datasets/UCF11_updated_mpg/biking/';
-matPath = '/home/sameera/Documents/Mphil/Untitled Folder/';
+matPath = '/media/sameera/VERBATIM HD/Mphil/IEEJournel/MotionTubes/Untitled Folder/';
+savePath = '/home/sameera/Documents/Mphil/OpticFlowCreation/OpticFlows/';
 
 dirinfo = dir(S);
 %dirinfo(~[dirinfo.isdir]) = [];
@@ -17,6 +18,9 @@ for K = 1 : length(dirinfo)
          matName = strcat(matPath,m(j).name(1:end-4));
          matName = strcat(matName,'.mat')
         % CreatePoticFlows(tubeCell, videoName,8,'test2');
+        fileExists = exist(matName,'file');
+        
+        if(fileExists == 2)
         tube = load(matName);
         tubeArray = tube.tubeCell;
         for i = 1:length(tube.tubeCell)
@@ -27,7 +31,8 @@ for K = 1 : length(dirinfo)
         end
         tubeLength = length(tubeArray);
         
-        CreatePoticFlows(tubeArray, videoName,tubeLength,matName)
+        CreatePoticFlows(tubeArray, videoName,tubeLength,strcat(savePath,m(j).name))
+        end
 
      end
    end
