@@ -58,6 +58,7 @@ for count = 1:cellNumber
             currentY2Coordinate = height;
         end
     
+
         currentCroppedFrame = currentFrame(currentY1Coordinate:currentY2Coordinate,currentX1Coordinate:currentX2Coordinate);
         currentCroppedFrame = imresize(currentCroppedFrame, [maxRad maxRad]);
         currentCroppedFrame = double(currentCroppedFrame);
